@@ -1,0 +1,89 @@
+-----MongoDB commands for databases-----
+view all database 
+show dbs
+
+create a new database or switch database
+use dbname
+
+view current database
+db
+
+delete database
+db.dropDatabase()
+----------------------------------------------------------------
+
+-----MongoDB commands for collections-----
+show all collections
+show collections
+
+create a collections
+db.createCollection('comments')
+
+drop the collections
+db.comments.drop()
+----------------------------------------------------------------
+
+-----MongoDB commands for rows-----
+
+show all rows
+db.comments.find()
+
+Insert one rows 
+db.comments.insert({
+    'name':'jyot',
+    'lang':'js',
+    'member':5
+})
+
+Insert many rows 
+db.comments.insertMany([{
+    'name':'jyot',
+    'lang':'js',
+    'member':5
+    },
+    {
+    'name':'urja',
+    'lang':'java',
+    'member':50
+    }])
+
+show all rows(pretty)
+db.comments.find().pretty()
+
+search in a MongoDB database
+db.comments.find({lang:'js'})
+
+limit the number of rows
+db.comments.find().limit(3)
+
+count the number of rows in output
+db.comments.find().limit(1).count()
+
+find the first row matching the object
+db.comments.findOne({lang:'js'})
+
+---- update the row------
+db.comments.update({name:'jyot'},
+{
+    'name':'jyot',
+    'lang':'js',
+    'member':47
+})
+
+MongoDB increment operator
+db.comments.update({name:'jyot'},
+{$inc:{
+    member:6
+}})
+
+MongoDB Rename operator
+db.comments.update({name:'jyot'},
+{$rename:{
+    member:'member jk'
+}})
+
+delete rows
+db.comments.remove({name:'urja'})
+
+less than
+db.comments.find({member:{$lt:90}})
